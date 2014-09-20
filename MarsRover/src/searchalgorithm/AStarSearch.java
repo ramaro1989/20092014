@@ -16,7 +16,6 @@ public class AStarSearch implements SearchAlgorithm {
 
 			@Override
 			public int compare(Node o1, Node o2) {
-				// TODO Auto-generated method stub
 				double cost1 = o1.getPathCost() + p.heuristic(o1);
 				double cost2 = o2.getPathCost() + p.heuristic(o2);
 
