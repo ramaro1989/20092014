@@ -19,12 +19,8 @@ public class AStarSearch implements SearchAlgorithm {
 				double cost1 = o1.getPathCost() + p.heuristic(o1);
 				double cost2 = o2.getPathCost() + p.heuristic(o2);
 
-				if (cost1 > cost2)
-					return 1;
-				else if (cost1 < cost2)
-					return -1;
-				else
-					return 0;
+				return cost1 > cost2 ? 1 :(cost1 < cost2 ? -1 :0);
+				
 			}
 
 		};
