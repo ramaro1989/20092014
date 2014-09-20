@@ -34,8 +34,8 @@ public class RoverProblem extends InformedSearchProblem implements
 	private double diagonal() {
 		double diagonal = Math.max(Math.abs(dx), Math.abs(dy));
 		double hStraight = manhattan();
-		double finalCost = diagonalMinCost * hDiagonal + minCost * (hStraight - 2 * hDiagonal);
-		return  
+		double finalCost = DIAGONAL_MIN_COST * hDiagonal + MIN_COST * (hStraight - 2 * hDiagonal);
+		return  finalCost;
 		
 	}
 
