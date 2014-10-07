@@ -21,9 +21,9 @@ public class NPuzzleTest {
 		
 		
 		NPuzzleProblem prob = new NPuzzleProblem(init,goal);
-//		SearchAlgorithm alg = new UniformCostSearch(prob);
+		SearchAlgorithm alg = new UniformCostSearch(prob);
 //		SearchAlgorithm alg = new BreadthFirstSearch(prob);
-		SearchAlgorithm alg = new DepthFirstSearch(prob);
+//		SearchAlgorithm alg = new DepthFirstSearch(prob);
 //		SearchAlgorithm alg = new AStarSearch(prob);
 		
 		Node n = alg.searchSolution();

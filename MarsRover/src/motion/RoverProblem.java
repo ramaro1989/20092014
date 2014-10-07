@@ -28,12 +28,13 @@ public class RoverProblem extends InformedSearchProblem implements
 	@Override
 	public double heuristic(Node n) {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	private double diagonal() {
 		double diagonal = Math.max(Math.abs(dx), Math.abs(dy));
 		double hStraight = manhattan();
+		double hDiagonal = 0; // valor aldrabado
 		double finalCost = DIAGONAL_MIN_COST * hDiagonal + MIN_COST * (hStraight - 2 * hDiagonal);
 		return  finalCost;
 		

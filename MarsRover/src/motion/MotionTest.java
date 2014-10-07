@@ -12,10 +12,10 @@ import searchproblem.*;
 
 public class MotionTest extends Component {
 
-	static final String TERRAIN_PATH = "/Users/carlosdamasio/Documents/workspace/ia/src/motion/th.png";
+	static final String TERRAIN_PATH = "/Users/soares/git/20092014/MarsRover/src/motion/th.png";
 	static final int SURFACE_STEP=10;
 	static final boolean SURFACE_LEVELS=false;
-	static final boolean ANIMATE=false;
+	static final boolean ANIMATE=true;
 	
     static BufferedImage img;
     static int startx, starty, goalx,goaly;
