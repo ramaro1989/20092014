@@ -1,8 +1,14 @@
 package searchalgorithm;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 
-import searchproblem.*;
+import motion.AnimatedSearch;
+import motion.RoverState;
+import searchproblem.SearchProblem;
 
 public class GraphSearch implements SearchAlgorithm {
 	private boolean done = false;
@@ -30,6 +36,7 @@ public class GraphSearch implements SearchAlgorithm {
 			frontier = null;
 			problem = null;
 		}
+		
 		return goal;
 	}
 
@@ -42,10 +49,12 @@ public class GraphSearch implements SearchAlgorithm {
 				return null;
 			}
 			Node n = frontier.remove();
+			RoverState rover = (RoverState) n.getState();
+			AnimatedSearch.draw(rover.getCoordX(), rover.getCoordY());
 			if (problem.goalTest(n.getState())) {
 				return n;
 			}
-			if (!explored.containsValue(n)) {
+			if (!explored.containsKey(n)) {
 				explored.put(n, n);
 				expansions++;
 				List<Node> children = n.Expand();
