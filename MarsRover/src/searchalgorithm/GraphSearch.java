@@ -20,7 +20,7 @@ public class GraphSearch implements SearchAlgorithm {
 	private HashMap<Node, Node> explored;
 
 	public GraphSearch(SearchProblem p, Queue<Node> q) {
-		explored = new HashMap<Node, Node>();
+
 		problem = p;
 		goal = null;
 		frontier = q;
@@ -36,7 +36,7 @@ public class GraphSearch implements SearchAlgorithm {
 			frontier = null;
 			problem = null;
 		}
-		
+
 		return goal;
 	}
 
@@ -44,6 +44,7 @@ public class GraphSearch implements SearchAlgorithm {
 		frontier.clear();
 		frontier.add(new Node(problem.getInitial()));
 		generated++;
+		explored = new HashMap<Node, Node>();
 		for (;;) {
 			if (frontier.isEmpty()) {
 				return null;
@@ -62,15 +63,16 @@ public class GraphSearch implements SearchAlgorithm {
 				frontier.addAll(children);
 			} else {
 
+				// optimização caso encontre nós já explorados com um valor da
+				// função de avaliação menor
 				Node old = explored.get(n);
 				if (old.getPathCost() > n.getPathCost()) {
 					explored.put(n, n);
-					List<Node> children = n.Expand();
 					expansions++;
-					frontier.addAll(children);
+					List<Node> children = n.Expand();
 					generated += children.size();
+					frontier.addAll(children);
 				}
-
 			}
 		}
 	}

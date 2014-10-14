@@ -3,11 +3,9 @@ package motion;
 import java.util.ArrayList;
 import java.util.List;
 
-import nPuzzle.NPuzzleState.NPuzzleOperator;
-
 import motion.Terrain.TerrainType;
-import static java.lang.Math.*;
-import searchproblem.*;
+import searchproblem.Arc;
+import searchproblem.State;
 
 public class RoverState extends State {
 
@@ -22,6 +20,7 @@ public class RoverState extends State {
 		this.x = x;
 		this.y = y;
 		this.map = map;
+		this.height = map.getHeight(x, y);
 	}
 
 	public int getCoordX() {
@@ -47,14 +46,17 @@ public class RoverState extends State {
 	}
 
 	private boolean applicableOperator(RoverDirections action) {
-		boolean isApplicable = true;
+		boolean isApplicable = false;
 
 		switch (action) {
 
 		case N:
+
 			if (y - 1 >= 0) {
 				int h = map.getHeight(x, y - 1);
+
 				double dh = Math.abs(h - height);
+
 				if (dh <= 10) {
 					isApplicable = true;
 				}
@@ -141,20 +143,15 @@ public class RoverState extends State {
 
 			break;
 		}
-		System.out.println(isApplicable);
 		return isApplicable;
 	}
 
 	@Override
 	public Arc successorState(Object op) {
-		RoverState child = (RoverState) this.clone(); 
+		RoverState child = (RoverState) this.clone();
 
-		return new Arc(this, child, op, child.applyOperator(op)); // este
-																	// estado,
-																	// filho,
-																	// operação,
-																	// custo da
-																	// operação
+		return new Arc(this, child, op, child.applyOperator(op)); 
+																	
 	}
 
 	@Override
@@ -240,7 +237,7 @@ public class RoverState extends State {
 		double dh = h - height;
 		double dx = x - this.x;
 		double dy = y - this.y;
-		double distance = Math.sqrt(dx * dx + dy * dy + h * h);
+		double distance = Math.sqrt(dx * dx + dy * dy + dh * dh);
 		double dhcost = Math.exp(Math.abs(dh));
 		double tType = 1.0;
 
