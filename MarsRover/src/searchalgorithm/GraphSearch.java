@@ -18,6 +18,7 @@ public class GraphSearch implements SearchAlgorithm {
 	private int expansions;
 	private int generated;
 	private HashMap<Node, Node> explored;
+	private long timeElapsed;
 
 	public GraphSearch(SearchProblem p, Queue<Node> q) {
 
@@ -31,12 +32,13 @@ public class GraphSearch implements SearchAlgorithm {
 
 	public Node searchSolution() {
 		if (!done) {
+			timeElapsed = System.currentTimeMillis();
 			goal = search();
 			done = true;
 			frontier = null;
 			problem = null;
 		}
-
+		timeElapsed = System.currentTimeMillis() - timeElapsed;
 		return goal;
 	}
 
@@ -82,6 +84,7 @@ public class GraphSearch implements SearchAlgorithm {
 
 		metrics.put("Node Expansions", expansions);
 		metrics.put("Nodes Generated", generated);
+		metrics.put("Time Elapsed (ms)", timeElapsed);
 		return metrics;
 	}
 }
